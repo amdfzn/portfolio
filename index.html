@@ -38,6 +38,9 @@ nav .menu a:hover { color: var(--text); text-decoration: none; }
 .hero h1 { font-size: clamp(1.9rem, 5vw, 2.8rem); }
 .hero .lead { margin-top: 16px; font-size: 1.1rem; max-width: 52ch; }
 .hero .sub { margin-top: 12px; color: var(--muted); max-width: 52ch; }
+.ayat { margin: 18px 0 0; padding-left: 14px; border-left: 2px solid var(--accent-line); color: var(--muted); font-size: .92rem; }
+.ayat [lang="ar"] { font-size: 1.25rem; color: var(--text); line-height: 1.9; text-align: left; }
+.ayat cite { white-space: nowrap; font-style: normal; font-family: var(--mono); font-size: .78rem; margin-left: 4px; }
 .cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
 .btn { font-family: var(--mono); font-size: .88rem; padding: 9px 16px; border-radius: 6px; border: 1px solid var(--line); color: var(--text); background: var(--surface); }
 .btn.primary { background: var(--blue); color: #fff; border-color: var(--blue); font-weight: 700; }
@@ -124,8 +127,13 @@ footer .contact span { color: var(--muted); }
       <h1>Ahmad Fauzan</h1>
       <p class="lead" lang="id">Saya developer di UPA TIK Universitas Riau. Proyek terbesar saya UNRI News, portal berita kampus yang saya bangun dari nol, lalu terus saya kembangkan dengan fitur otomatis dan pengolahan data.</p>
       <p class="lead" lang="en">I'm a developer at UPA TIK, Universitas Riau's IT unit. My biggest project is UNRI News, a campus news portal I built from scratch and keep extending with automation and data features.</p>
-      <p class="sub" lang="id">Lulus S1 Teknik Informatika UIN SUSKA Riau tahun 2024 (IPK 3,81, cum laude), lalu sejak Juni 2025 mengembangkan dan merawat sistem informasi kampus. <span class="ph">[isi 1 kalimat personal]</span></p>
-      <p class="sub" lang="en">I graduated in Informatics Engineering from UIN SUSKA Riau in 2024 (GPA 3.81/4, cum laude), and since June 2025 I've been building and maintaining the university's information systems. <span class="ph">[isi 1 kalimat personal]</span></p>
+      <p class="sub" lang="id">Lulus S1 Teknik Informatika UIN SUSKA Riau tahun 2024 (IPK 3,81, cum laude), lalu sejak Juni 2025 mengembangkan dan merawat sistem informasi kampus.</p>
+      <p class="sub" lang="en">I graduated in Informatics Engineering from UIN SUSKA Riau in 2024 (GPA 3.81/4, cum laude), and since June 2025 I've been building and maintaining the university's information systems.</p>
+      <blockquote class="ayat">
+        <p lang="ar" dir="rtl">هَلْ جَزَاءُ الْإِحْسَانِ إِلَّا الْإِحْسَانُ</p>
+        <p lang="id">"Tidak ada balasan untuk kebaikan selain kebaikan (pula)." <cite>QS. Ar-Rahman: 60</cite></p>
+        <p lang="en">"Is the reward for good anything but good?" <cite>Qur'an 55:60</cite></p>
+      </blockquote>
       <div class="cta">
         <a class="btn primary" href="#proyek"><span lang="id">Lihat proyek</span><span lang="en">See projects</span></a>
         <a class="btn" href="#kontak"><span lang="id">Hubungi saya</span><span lang="en">Get in touch</span></a>
@@ -339,7 +347,6 @@ footer .contact span { color: var(--muted); }
     </div>
     <div class="copy">
       <span>© 2026 Ahmad Fauzan</span>
-      <span lang="id">Draf. Bagian bertanda [isi] belum dilengkapi.</span><span lang="en">Draft. Parts marked [isi] are not filled in yet.</span>
     </div>
   </div>
 </footer>
