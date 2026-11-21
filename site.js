@@ -1,4 +1,4 @@
-// Tema (gelap/terang) dan bahasa (id/en), disimpan di browser.
+// Tema (gelap/terang) dan bahasa (en default, id opsional), disimpan di browser.
 // Dimuat di <head> tanpa defer supaya tema terpasang sebelum halaman tampil (tidak berkedip).
 // Teks dwibahasa ditulis berpasangan: <p lang="id">…</p><p lang="en">…</p>; CSS menyembunyikan yang tidak aktif.
 (() => {
@@ -8,7 +8,7 @@
 
   const apply = () => {
     root.dataset.theme = get('tema') || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-    root.lang = get('bahasa') || 'id';
+    root.lang = get('bahasa') || 'en';
     const t = root.lang === 'en' ? root.dataset.titleEn : root.dataset.titleId;
     if (t) document.title = t;
   };
