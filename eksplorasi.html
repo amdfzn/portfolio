@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="id" data-title-id="Eksplorasi · Ahmad Fauzan" data-title-en="Archive · Ahmad Fauzan">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eksplorasi · Ahmad Fauzan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<script src="site.js"></script>
+<style>
+/* Warna di site.css. */
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 400 16px/1.65 var(--sans); }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.wrap { max-width: 1000px; margin: 0 auto; padding: 32px 20px 48px; }
+.top { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.back { font-family: var(--mono); font-size: .85rem; }
+h1 { font-family: var(--mono); font-size: clamp(1.7rem, 4vw, 2.3rem); margin: 24px 0 8px; }
+.intro { color: var(--muted); max-width: 62ch; margin: 0 0 28px; }
+.ph { font-family: var(--mono); font-size: .85em; color: var(--accent); background: var(--accent-soft); border: 1px dashed var(--accent-line); border-radius: 4px; padding: 0 5px; white-space: nowrap; }
+
+.filter { display: flex; flex-wrap: wrap; gap: 8px; font-family: var(--mono); font-size: .82rem; margin-bottom: 18px; }
+.filter a { color: var(--muted); border: 1px solid var(--line); border-radius: 4px; padding: 3px 10px; }
+.filter a:hover { color: var(--text); text-decoration: none; border-color: var(--accent); }
+.filter a[aria-current] { color: #fff; background: var(--blue); border-color: var(--blue); }
+
+table { width: 100%; border-collapse: collapse; }
+th { text-align: left; font-size: .85rem; font-weight: 600; padding: 0 12px 10px 0; border-bottom: 1px solid var(--line); }
+td { padding: 14px 12px 14px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+td.thn { font-family: var(--mono); font-size: .85rem; color: var(--muted); white-space: nowrap; }
+.st { display: block; font-size: .75rem; color: var(--muted); }
+.st.on { color: var(--accent); }
+.st.ph { display: table; margin-top: 4px; }
+td b { font-weight: 600; }
+td p { margin: 2px 0 0; color: var(--muted); font-size: .92rem; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tags span { font-family: var(--mono); font-size: .74rem; color: var(--muted); border: 1px solid var(--line); border-radius: 4px; padding: 1px 7px; }
+td.link { font-size: .88rem; white-space: nowrap; }
+
+.foot { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 20px; font-family: var(--mono); font-size: .85rem; color: var(--muted); }
+.pager { display: flex; gap: 6px; }
+.pager[hidden] { display: none; }
+.pager a, .pager > span { min-width: 34px; text-align: center; padding: 4px 8px; border: 1px solid var(--line); border-radius: 4px; }
+.pager a[aria-current] { background: var(--blue); border-color: var(--blue); color: #fff; }
+.pager > span { opacity: .4; }
+.copy { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--muted); font-size: .8rem; font-family: var(--mono); }
+
+@media (max-width: 760px) {
+  thead { display: none; }
+  tr { display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+  tr[hidden] { display: none; }
+  td { padding: 0; border: 0; }
+  td.judul, td.stack { grid-column: 1 / -1; }
+  td.thn { order: -1; display: flex; gap: 10px; align-items: baseline; }
+  .st.ph { margin-top: 0; }
+}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="top">
+    <a class="back" href="index.html">← Ahmad Fauzan</a>
+    <div class="toggles"><button id="bahasa" type="button">EN</button><button id="tema" type="button">☀</button></div>
+  </div>
+  <h1><span lang="id">Eksplorasi</span><span lang="en">Archive</span></h1>
+  <p class="intro" lang="id">Catatan semua yang pernah saya bangun atau coba, termasuk yang belum selesai. Belum lengkap, dan akan terus bertambah. Yang paling baru di atas.</p>
+  <p class="intro" lang="en">A log of everything I've built or tried, unfinished things included. It's not complete and will keep growing. Newest first.</p>
+
+  <nav class="filter" id="filter" aria-label="Filter"></nav>
+
+  <table id="daftar">
+    <thead><tr>
+      <th><span lang="id">Tahun</span><span lang="en">Year</span></th>
+      <th><span lang="id">Eksplorasi</span><span lang="en">Project</span></th>
+      <th><span lang="id">Teknologi</span><span lang="en">Built with</span></th>
+      <th>Link</th>
+    </tr></thead>
+    <!-- Tambah entri baru: salin satu <tr>, taruh paling atas. data-tags dipisah spasi (nama tag lihat LABEL di skrip bawah).
+         Status: <span class="st on">…berjalan/ongoing…</span> atau <span class="st">…selesai/done…</span>. Teks dwibahasa: pasangan lang="id" dan lang="en". -->
+    <tbody data-per="10">
+      <tr data-tags="web">
+        <td class="thn">2026<span class="st"><span lang="id">selesai</span><span lang="en">done</span></span></td>
+        <td class="judul"><b>SDM TIK</b><p lang="id">Aplikasi data pegawai UPA TIK yang saya bangun dari nol: dokumen pegawai, pengajuan cuti ASN, dan pencocokan keahlian.</p><p lang="en">A staff records app for UPA TIK that I built from scratch: staff documents, civil-servant leave requests, and skill matching.</p></td>
+        <td class="stack"><div class="tags"><span>Laravel</span><span>Alpine.js</span></div></td>
+        <td class="link"></td>
+      </tr>
+      <tr data-tags="web">
+        <td class="thn">2026<span class="st"><span lang="id">selesai</span><span lang="en">done</span></span></td>
+        <td class="judul"><b>Aset TIK</b><p lang="id">Aplikasi inventaris aset UPA TIK yang saya bangun dari nol: peminjaman, label QR, laporan kerusakan, dan stock opname.</p><p lang="en">UPA TIK's asset inventory app, built from scratch: lending, QR labels, damage reports, and stock counts.</p></td>
+        <td class="stack"><div class="tags"><span>Laravel</span><span>Livewire</span></div></td>
+        <td class="link"><a href="https://aset.tik.unri.ac.id">aset.tik.unri.ac.id ↗</a></td>
+      </tr>
+      <tr data-tags="data">
+        <td class="thn">2026<span class="st"><span lang="id">selesai</span><span lang="en">done</span></span></td>
+        <td class="judul"><b><span lang="id">Dashboard pengunjung KIOSK</span><span lang="en">KIOSK visitor dashboard</span></b><p lang="id">Laporan pengunjung layanan UPA TIK: jumlah pengunjung, layanan terbanyak, dan asal fakultas.</p><p lang="en">A visitor report for UPA TIK's service desk: visitor numbers, top services, and faculties.</p></td>
+        <td class="stack"><div class="tags"><span>Power BI</span></div></td>
+        <td class="link"><a href="https://app.powerbi.com/view?r=eyJrIjoiNWRhMzQ4OWMtNmQ3Ny00YjRiLWE1ZmUtZmEyMWJhMWMzMDg4IiwidCI6IjEwOTc3MWNhLTE3NmQtNGMxMS05M2E2LTNjYTk0YjA4ZGYyZiIsImMiOjEwfQ%3D%3D">Dashboard ↗</a></td>
+      </tr>
+      <tr data-tags="web otomasi">
+        <td class="thn">2026<span class="st"><span lang="id">selesai</span><span lang="en">done</span></span></td>
+        <td class="judul"><b>UNRI News</b><p lang="id">Portal berita kampus yang saya bangun dari nol. Mengumpulkan 4.202 artikel dari 200 situs kampus secara otomatis.</p><p lang="en">A campus news portal I built from scratch. It gathers 4,202 articles from 200 campus sites automatically.</p></td>
+        <td class="stack"><div class="tags"><span>Laravel</span><span>MySQL</span></div></td>
+        <td class="link"><a href="https://news.unri.ac.id">news.unri.ac.id ↗</a></td>
+      </tr>
+      <tr data-tags="otomasi data">
+        <td class="thn">2025<span class="st"><span lang="id">selesai</span><span lang="en">done</span></span></td>
+        <td class="judul"><b><span lang="id">Pemantauan situs KIOSK</span><span lang="en">KIOSK site monitoring</span></b><p lang="id">Memeriksa situs KIOSK setiap 5 menit, melapor lewat bot Telegram, dan merekapnya jadi laporan uptime harian.</p><p lang="en">Checks the KIOSK site every 5 minutes, reports through a Telegram bot, and rolls it up into a daily uptime report.</p></td>
+        <td class="stack"><div class="tags"><span>n8n</span><span>Telegram</span><span>Power BI</span></div></td>
+        <td class="link"></td>
+      </tr>
+      <tr data-tags="ai riset">
+        <td class="thn">2024<span class="st"><span lang="id">selesai</span><span lang="en">done</span></span></td>
+        <td class="judul"><b><span lang="id">Memprediksi sisa umur mesin dengan AI</span><span lang="en">Predicting a machine's remaining life with AI</span></b><p lang="id">Paper jurnal, saya penulis pertama.</p><p lang="en">Journal paper, first author.</p></td>
+        <td class="stack"><div class="tags"><span>TensorFlow</span><span>Python</span></div></td>
+        <td class="link"><a href="https://doi.org/10.18495/comengapp.v13i3.484"><span lang="id">Baca paper</span><span lang="en">Read paper</span> ↗</a></td>
+      </tr>
+      <tr data-tags="ai">
+        <td class="thn">2023<span class="st"><span lang="id">selesai</span><span lang="en">done</span></span></td>
+        <td class="judul"><b>TalentEase</b><p lang="id">Proyek akhir Bangkit. Saya mengumpulkan contoh CV untuk melatih model AI-nya.</p><p lang="en">Bangkit final project. I collected sample CVs to train its AI model.</p></td>
+        <td class="stack"><div class="tags"><span>Machine learning</span></div></td>
+        <td class="link"><a href="https://github.com/talentease">GitHub ↗</a></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="foot">
+    <span id="hitung"></span>
+    <nav class="pager" id="pager" aria-label="Pagination"></nav>
+  </div>
+
+  <p class="copy">© 2026 Ahmad Fauzan</p>
+</main>
+
+<script>
+// Tanpa JS semua baris tampil. Dengan JS: filter tag + paginasi lewat URL (?tag=ai&hal=2), jadi bisa dibagikan.
+// Teks buatan skrip ditulis dwibahasa (span lang), jadi ganti bahasa tidak perlu render ulang.
+const LABEL = { web: ['web', 'web'], ai: ['ai', 'ai'], data: ['data', 'data'], alat: ['alat', 'tools'], otomasi: ['otomasi', 'automation'], riset: ['riset', 'research'] };
+const two = (id, en) => `<span lang="id">${id}</span><span lang="en">${en}</span>`;
+
+const body = document.querySelector('#daftar tbody');
+const rows = [...body.rows];
+const per = +body.dataset.per || 10;
+const q = new URLSearchParams(location.search);
+const tag = q.get('tag') || '';
+const tagsOf = r => r.dataset.tags.split(' ');
+const url = (t, h) => '?' + new URLSearchParams({ ...(t && { tag: t }), ...(h > 1 && { hal: h }) });
+
+const hit = rows.filter(r => !tag || tagsOf(r).includes(tag));
+const pages = Math.max(1, Math.ceil(hit.length / per));
+const hal = Math.min(Math.max(1, +q.get('hal') || 1), pages);
+const shown = hit.slice((hal - 1) * per, hal * per);
+rows.forEach(r => r.hidden = !shown.includes(r));
+
+const link = (href, text, cur) => `<a href="${href}"${cur ? ' aria-current="page"' : ''}>${text}</a>`;
+document.getElementById('filter').innerHTML = ['', ...new Set(rows.flatMap(tagsOf))].sort()
+  .map(t => link(url(t, 1), t ? two(...(LABEL[t] || [t, t])) : two('semua', 'all'), t === tag)).join('');
+
+const from = (hal - 1) * per + 1, to = (hal - 1) * per + shown.length;
+document.getElementById('hitung').innerHTML = hit.length
+  ? two(`${from}–${to} dari ${hit.length} entri`, `${from}–${to} of ${hit.length} entries`)
+  : two('Tidak ada entri dengan tag ini.', 'No entries with this tag.');
+
+const pager = document.getElementById('pager');
+pager.hidden = pages < 2;
+const nums = Array.from({ length: pages }, (_, i) => link(url(tag, i + 1), i + 1, i + 1 === hal));
+pager.innerHTML = (hal > 1 ? link(url(tag, hal - 1), '‹') : '<span>‹</span>') + nums.join('')
+  + (hal < pages ? link(url(tag, hal + 1), '›') : '<span>›</span>');
+</script>
+</body>
+</html>

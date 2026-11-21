@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="id" data-title-id="Portofolio Ahmad Fauzan" data-title-en="Ahmad Fauzan · Portfolio">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portofolio Ahmad Fauzan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<script src="site.js"></script>
+<style>
+/* Layout: satu kolom 920px, kotak profil, kelompok proyek, lalu riwayat dan kontak. Warna di site.css. */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 400 16px/1.65 var(--sans); }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.wrap { max-width: 920px; margin: 0 auto; padding: 0 20px; }
+h1, h2, h3 { font-family: var(--mono); font-weight: 700; margin: 0; text-wrap: balance; line-height: 1.25; }
+h2 { font-size: 1.15rem; color: var(--accent); letter-spacing: .02em; }
+h2::before { content: "## "; color: var(--muted); }
+h3 { font-size: 1.05rem; color: var(--text); }
+p { margin: 0; }
+.ph { font-family: var(--mono); font-size: .85em; color: var(--accent); background: var(--accent-soft); border: 1px dashed var(--accent-line); border-radius: 4px; padding: 0 5px; white-space: nowrap; }
+
+/* nav */
+nav { position: sticky; top: 0; z-index: 5; background: var(--nav-bg); border-bottom: 1px solid var(--line); backdrop-filter: blur(6px); }
+nav .wrap { display: flex; gap: 20px; align-items: center; height: 52px; font-family: var(--mono); font-size: .85rem; }
+nav .brand { color: var(--accent); font-weight: 700; white-space: nowrap; }
+nav .menu { display: flex; gap: 20px; overflow-x: auto; white-space: nowrap; margin-left: auto; }
+nav .menu a { color: var(--muted); }
+nav .menu a:hover { color: var(--text); text-decoration: none; }
+
+/* hero */
+.hero { padding: 56px 0 48px; display: grid; grid-template-columns: 1.1fr 1fr; gap: 32px; align-items: start; }
+.hero h1 { font-size: clamp(1.9rem, 5vw, 2.8rem); }
+.hero .lead { margin-top: 16px; font-size: 1.1rem; max-width: 52ch; }
+.hero .sub { margin-top: 12px; color: var(--muted); max-width: 52ch; }
+.cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+.btn { font-family: var(--mono); font-size: .88rem; padding: 9px 16px; border-radius: 6px; border: 1px solid var(--line); color: var(--text); background: var(--surface); }
+.btn.primary { background: var(--blue); color: #fff; border-color: var(--blue); font-weight: 700; }
+.btn:hover { text-decoration: none; border-color: var(--accent); }
+.term { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; font-family: var(--mono); font-size: .82rem; }
+.term .bar { padding: 8px 12px; border-bottom: 1px solid var(--line); color: var(--muted); }
+.term pre { margin: 0; padding: 14px 16px; overflow-x: auto; line-height: 1.7; }
+.k { color: var(--text); } .s { color: var(--accent); }
+
+section { padding: 44px 0; border-top: 1px solid var(--line); }
+.sec-head { display: flex; flex-direction: column; gap: 6px; margin-bottom: 24px; }
+.sec-head p { color: var(--muted); max-width: 62ch; }
+
+/* proyek */
+.group { margin-top: 32px; }
+.group > h3 { font-size: .9rem; color: var(--muted); font-weight: 500; margin-bottom: 12px; }
+.group > h3 b { color: var(--text); }
+.cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 18px; display: flex; flex-direction: column; gap: 10px; }
+.card.feature { grid-column: 1 / -1; border-color: var(--accent-line); }
+.card .role { font-family: var(--mono); font-size: .8rem; color: var(--muted); }
+.card .role::before { content: "// "; }
+.card ul { margin: 0; padding-left: 18px; }
+.card li { margin: 3px 0; }
+.card .muted { color: var(--muted); font-size: .92rem; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; }
+.tags span { font-family: var(--mono); font-size: .74rem; color: var(--muted); border: 1px solid var(--line); border-radius: 4px; padding: 1px 7px; }
+.links { display: flex; gap: 14px; flex-wrap: wrap; font-family: var(--mono); font-size: .82rem; }
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.stats div { border: 1px solid var(--line); border-radius: 6px; padding: 10px 12px; }
+.stats b { display: block; font-family: var(--mono); font-size: 1.05rem; }
+.stats span { font-size: .82rem; color: var(--muted); }
+
+/* daftar */
+.rows { display: flex; flex-direction: column; }
+.row { display: grid; grid-template-columns: 170px 1fr; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.row:last-child { border-bottom: 0; }
+.row .when { font-family: var(--mono); font-size: .82rem; color: var(--muted); }
+.row b { font-weight: 600; }
+.row p { color: var(--muted); font-size: .94rem; }
+.after { margin-top: 14px; color: var(--muted); }
+
+footer { padding: 40px 0 48px; border-top: 1px solid var(--line); }
+footer .note { margin-top: 12px; max-width: 60ch; }
+footer .contact { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px 24px; font-family: var(--mono); font-size: .9rem; margin-top: 18px; }
+footer .contact span { color: var(--muted); }
+.copy { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; color: var(--muted); font-size: .8rem; font-family: var(--mono); }
+.caret { display: inline-block; width: .6ch; height: 1em; background: var(--accent); vertical-align: -2px; animation: blink 1.1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .caret { animation: none; } html { scroll-behavior: auto; } }
+@media (max-width: 760px) {
+  nav .wrap { gap: 12px; }
+  nav .brand { display: none; }
+  nav .menu { margin-left: 0; margin-right: auto; }
+  .hero { grid-template-columns: 1fr; padding-top: 36px; }
+  .cards { grid-template-columns: 1fr; }
+  .stats { grid-template-columns: 1fr; }
+  .row { grid-template-columns: 1fr; gap: 4px; }
+  footer .contact { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#atas">~/fauzan</a>
+    <div class="menu">
+      <a href="#proyek"><span lang="id">proyek</span><span lang="en">projects</span></a>
+      <a href="#riset"><span lang="id">riset</span><span lang="en">research</span></a>
+      <a href="#video">video</a>
+      <a href="eksplorasi.html"><span lang="id">eksplorasi</span><span lang="en">archive</span></a>
+      <a href="#riwayat"><span lang="id">riwayat</span><span lang="en">history</span></a>
+      <a href="#kontak"><span lang="id">kontak</span><span lang="en">contact</span></a>
+    </div>
+    <div class="toggles"><button id="bahasa" type="button">EN</button><button id="tema" type="button">☀</button></div>
+  </div>
+</nav>
+
+<main class="wrap" id="atas">
+
+  <header class="hero">
+    <div>
+      <h1>Ahmad Fauzan</h1>
+      <p class="lead" lang="id">Saya developer di UPA TIK Universitas Riau. Proyek terbesar saya UNRI News, portal berita kampus yang saya bangun dari nol, lalu terus saya kembangkan dengan fitur otomatis dan pengolahan data.</p>
+      <p class="lead" lang="en">I'm a developer at UPA TIK, Universitas Riau's IT unit. My biggest project is UNRI News, a campus news portal I built from scratch and keep extending with automation and data features.</p>
+      <p class="sub" lang="id">Lulus S1 Teknik Informatika UIN SUSKA Riau tahun 2024 (IPK 3,81, cum laude), lalu sejak Juni 2025 mengembangkan dan merawat sistem informasi kampus. <span class="ph">[isi 1 kalimat personal]</span></p>
+      <p class="sub" lang="en">I graduated in Informatics Engineering from UIN SUSKA Riau in 2024 (GPA 3.81/4, cum laude), and since June 2025 I've been building and maintaining the university's information systems. <span class="ph">[isi 1 kalimat personal]</span></p>
+      <div class="cta">
+        <a class="btn primary" href="#proyek"><span lang="id">Lihat proyek</span><span lang="en">See projects</span></a>
+        <a class="btn" href="#kontak"><span lang="id">Hubungi saya</span><span lang="en">Get in touch</span></a>
+      </div>
+    </div>
+    <div class="term">
+      <div class="bar"><span lang="id">profil.json</span><span lang="en">profile.json</span></div>
+<pre lang="id">{
+  <span class="k">"nama"</span>: <span class="s">"Ahmad Fauzan"</span>,
+  <span class="k">"posisi"</span>: <span class="s">"Pengembang, UPA TIK UNRI"</span>,
+  <span class="k">"fokus"</span>: [
+    <span class="s">"membangun website dan aplikasi"</span>,
+    <span class="s">"mengolah data dan AI"</span>,
+    <span class="s">"mengotomatiskan pekerjaan"</span>
+  ],
+  <span class="k">"alat"</span>: [<span class="s">"Laravel"</span>, <span class="s">"Python"</span>,
+           <span class="s">"MySQL"</span>, <span class="s">"Docker"</span>, <span class="s">"n8n"</span>]
+}<span class="caret" aria-hidden="true"></span></pre>
+<pre lang="en">{
+  <span class="k">"name"</span>: <span class="s">"Ahmad Fauzan"</span>,
+  <span class="k">"role"</span>: <span class="s">"Developer, UPA TIK UNRI"</span>,
+  <span class="k">"focus"</span>: [
+    <span class="s">"building websites and apps"</span>,
+    <span class="s">"working with data and AI"</span>,
+    <span class="s">"automating routine work"</span>
+  ],
+  <span class="k">"tools"</span>: [<span class="s">"Laravel"</span>, <span class="s">"Python"</span>,
+            <span class="s">"MySQL"</span>, <span class="s">"Docker"</span>, <span class="s">"n8n"</span>]
+}<span class="caret" aria-hidden="true"></span></pre>
+    </div>
+  </header>
+
+  <section id="proyek">
+    <div class="sec-head">
+      <h2><span lang="id">proyek</span><span lang="en">projects</span></h2>
+      <p lang="id">Yang saya kerjakan di kantor dan di luar jam kerja. Untuk proyek yang saya kerjakan bersama orang lain, saya tulis bagian mana yang saya pegang. Daftar lengkapnya ada di <a href="eksplorasi.html">halaman eksplorasi</a>.</p>
+      <p lang="en">Work from the office and outside it. For projects I worked on with others, I say which part is mine. The full list is in the <a href="eksplorasi.html">archive</a>.</p>
+    </div>
+
+    <div class="group">
+      <h3><b>01</b> · <span lang="id">Website dan aplikasi yang sudah dipakai</span><span lang="en">Websites and apps in real use</span></h3>
+      <div class="cards">
+
+        <article class="card feature">
+          <span class="role"><span lang="id">Saya bangun dari nol</span><span lang="en">Built from scratch</span></span>
+          <h3>UNRI News</h3>
+          <p lang="id">Portal berita yang mengumpulkan kabar dari banyak situs resmi Universitas Riau di satu tempat, dengan panel admin untuk tim humas.</p>
+          <p lang="en">A news portal that gathers stories from Universitas Riau's many official sites into one place, with an admin panel for the communications team.</p>
+          <ul>
+            <li lang="id">Setiap 15 menit, berita baru dari situs-situs kampus diambil otomatis.</li>
+            <li lang="en">Every 15 minutes, new stories from campus sites are pulled in automatically.</li>
+            <li lang="id">Tag, galeri foto, dan gambar sampul diisi otomatis.</li>
+            <li lang="en">Tags, photo galleries, and cover images are filled in automatically.</li>
+            <li lang="id">Tulisan yang terdeteksi spam ditahan sebelum tampil.</li>
+            <li lang="en">Posts flagged as spam are held back before they go live.</li>
+            <li lang="id">Admin bisa melihat statistik pengunjung langsung dari panel.</li>
+            <li lang="en">Admins can see visitor statistics right in the panel.</li>
+          </ul>
+          <div class="stats">
+            <div><b><span lang="id">4.202</span><span lang="en">4,202</span></b><span lang="id">artikel dari situs-situs kampus</span><span lang="en">articles from campus sites</span></div>
+            <div><b>200</b><span lang="id">situs kampus terhubung</span><span lang="en">campus sites connected</span></div>
+            <div><b>5</b><span lang="id">sumber berita dari luar kampus</span><span lang="en">news sources outside campus</span></div>
+          </div>
+          <p class="muted" lang="id">Angka per November 2026.</p>
+          <p class="muted" lang="en">Figures as of November 2026.</p>
+          <div class="links"><a href="https://news.unri.ac.id">news.unri.ac.id</a></div>
+          <div class="tags"><span>Laravel</span><span>MySQL</span><span>Tailwind</span></div>
+        </article>
+
+        <article class="card">
+          <span class="role"><span lang="id">Saya bangun dari nol</span><span lang="en">Built from scratch</span></span>
+          <h3>Aset TIK</h3>
+          <p lang="id">Aplikasi inventaris aset UPA TIK yang menggantikan sistem lama. Data dari sistem lama dipindahkan ke aplikasi ini.</p>
+          <p lang="en">UPA TIK's asset inventory app, replacing the old system. Data from the old system was moved over.</p>
+          <ul>
+            <li lang="id">Peminjaman dan pengembalian aset, termasuk ke peminjam dari luar unit.</li>
+            <li lang="en">Lending and returning assets, including to borrowers outside the unit.</li>
+            <li lang="id">Label QR untuk ditempel di barang; dipindai untuk melihat info asetnya.</li>
+            <li lang="en">QR labels to stick on items; scan one to see the asset's details.</li>
+            <li lang="id">Laporan kerusakan, perbaikan, stok barang habis pakai, dan stock opname tahunan.</li>
+            <li lang="en">Damage reports, repairs, consumable stock, and a yearly stock count.</li>
+          </ul>
+          <div class="links"><a href="https://aset.tik.unri.ac.id">aset.tik.unri.ac.id</a></div>
+          <div class="tags"><span>Laravel</span><span>Livewire</span></div>
+        </article>
+
+        <article class="card">
+          <span class="role"><span lang="id">Saya bangun dari nol</span><span lang="en">Built from scratch</span></span>
+          <h3>SDM TIK</h3>
+          <p lang="id">Aplikasi pengelolaan data pegawai UPA TIK. Tampilannya sengaja disamakan dengan Aset TIK supaya kedua aplikasi terasa satu keluarga.</p>
+          <p lang="en">An app for managing UPA TIK's staff records. Its look matches Aset TIK on purpose, so the two apps feel like one family.</p>
+          <ul>
+            <li lang="id">Data dan dokumen tiap pegawai di satu tempat.</li>
+            <li lang="en">Each staff member's records and documents in one place.</li>
+            <li lang="id">Pengajuan cuti ASN dari awal sampai disetujui, lengkap dengan sisa cuti dan kalender cuti bersama.</li>
+            <li lang="en">Civil-servant leave requests from submission to approval, with leave balances and the shared holiday calendar.</li>
+            <li lang="id">Pencocokan keahlian pegawai, dan cetak kartu identitas pegawai.</li>
+            <li lang="en">Matching staff by skill, and printing staff ID cards.</li>
+          </ul>
+          <p class="muted" lang="id">Tidak dipublikasikan karena berisi data pegawai.</p>
+          <p class="muted" lang="en">Not public because it holds staff data.</p>
+          <div class="tags"><span>Laravel</span><span>Alpine.js</span></div>
+        </article>
+
+        <article class="card">
+          <span class="role"><span lang="id">Anggota tim pengembang</span><span lang="en">Development team member</span></span>
+          <h3>SATU UNRI</h3>
+          <p lang="id">Sistem informasi terpadu kampus, untuk admin dan mahasiswa. Saya bergabung dengan tim yang sudah lebih dulu membangunnya, dan sejak Mei 2026 menulis 146 commit di dalamnya.</p>
+          <p lang="en">The university's integrated information system, for staff and students. I joined the team that built it and have made 146 commits since May 2026.</p>
+          <ul>
+            <li lang="id">Modul KUKERTA (kuliah kerja nyata): pendaftaran per periode, logbook, luaran, persetujuan massal, sampai nilai yang masuk ke transkrip.</li>
+            <li lang="en">The community-service (KUKERTA) module: sign-up by period, logbooks, outputs, bulk approval, and grades that flow into the transcript.</li>
+            <li lang="id">Pengiriman data mahasiswa ke PDDikti: impor dari sistem akademik, impor per NIM, dan pengecekan status sinkronisasi.</li>
+            <li lang="en">Sending student data to PDDikti, the national higher-education database: imports from the academic system, per-student imports, and sync status checks.</li>
+            <li lang="id">Rekap status KRS dan status akademik mahasiswa per fakultas, prodi, dan angkatan, lengkap dengan ekspor Excel.</li>
+            <li lang="en">Course-registration and academic-status reports by faculty, programme, and intake year, with Excel export.</li>
+          </ul>
+          <p class="muted" lang="id">Kode dan data tidak dipublikasikan karena berisi data mahasiswa.</p>
+          <p class="muted" lang="en">The code isn't public because it contains student data.</p>
+          <div class="tags"><span>Laravel</span><span>Docker</span></div>
+        </article>
+
+        <article class="card">
+          <span class="role"><span lang="id">Dokumentasi, pemantauan, laporan</span><span lang="en">Docs, monitoring, reporting</span></span>
+          <h3>KIOSK UNRI</h3>
+          <p lang="id">Aplikasi layanan dan helpdesk UPA TIK. Kodenya ditulis tim lain; bagian saya membuat aplikasi ini terdokumentasi, terpantau, dan terukur.</p>
+          <p lang="en">UPA TIK's service and helpdesk app. Another team wrote the code; my part was making it documented, monitored, and measured.</p>
+          <ul>
+            <li lang="id">Menulis dokumentasi teknis serta panduan pengguna untuk pengunjung dan admin (Juli – Agustus 2025).</li>
+            <li lang="en">Wrote the technical documentation and the user guides for visitors and admins (July – August 2025).</li>
+            <li lang="id">Membuat pemantauan otomatis yang memeriksa situs KIOSK setiap 5 menit: hidup atau mati, dan seberapa cepat merespons. Laporannya dikirim lewat bot Telegram dan direkap jadi laporan uptime harian, lebih dari 10.000 pemeriksaan sejak September 2025.</li>
+            <li lang="en">Set up automatic monitoring that checks the KIOSK site every 5 minutes: whether it's up, and how fast it responds. A Telegram bot sends the reports, and results roll up into a daily uptime report, over 10,000 checks since September 2025.</li>
+            <li lang="id">Membuat dashboard laporan pengunjung di Power BI: jumlah pengunjung, layanan yang paling banyak dicari, dan asal fakultas. <a href="https://app.powerbi.com/view?r=eyJrIjoiNWRhMzQ4OWMtNmQ3Ny00YjRiLWE1ZmUtZmEyMWJhMWMzMDg4IiwidCI6IjEwOTc3MWNhLTE3NmQtNGMxMS05M2E2LTNjYTk0YjA4ZGYyZiIsImMiOjEwfQ%3D%3D">Lihat dashboard</a></li>
+            <li lang="en">Built a visitor report dashboard in Power BI: visitor numbers, the most requested services, and which faculties visitors come from. <a href="https://app.powerbi.com/view?r=eyJrIjoiNWRhMzQ4OWMtNmQ3Ny00YjRiLWE1ZmUtZmEyMWJhMWMzMDg4IiwidCI6IjEwOTc3MWNhLTE3NmQtNGMxMS05M2E2LTNjYTk0YjA4ZGYyZiIsImMiOjEwfQ%3D%3D">View the dashboard</a></li>
+          </ul>
+          <div class="tags"><span>n8n</span><span>Telegram</span><span>Power BI</span></div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="riset">
+    <div class="sec-head">
+      <h2><span lang="id">riset</span><span lang="en">research</span></h2>
+      <p lang="id">Pekerjaan AI dari masa kuliah dan program Bangkit.</p>
+      <p lang="en">AI work from university and the Bangkit program.</p>
+    </div>
+    <div class="cards">
+      <article class="card">
+        <span class="role"><span lang="id">Penulis pertama</span><span lang="en">First author</span></span>
+        <h3><span lang="id">Memprediksi sisa umur mesin dengan AI</span><span lang="en">Predicting a machine's remaining life with AI</span></h3>
+        <p lang="id">Model AI yang membaca data sensor untuk memperkirakan berapa lama lagi sebuah mesin bisa dipakai. Terbit di ComEngApp Journal tahun 2024.</p>
+        <p lang="en">An AI model that reads sensor data to estimate how much longer a machine can keep running. Published in ComEngApp Journal in 2024.</p>
+        <div class="links"><a href="https://doi.org/10.18495/comengapp.v13i3.484"><span lang="id">Baca paper</span><span lang="en">Read the paper</span></a></div>
+        <div class="tags"><span>TensorFlow</span><span>Python</span></div>
+      </article>
+      <article class="card">
+        <span class="role"><span lang="id">Tim AI · Bangkit 2023</span><span lang="en">AI team · Bangkit 2023</span></span>
+        <h3>TalentEase</h3>
+        <p lang="id">Proyek akhir Bangkit. Saya mengumpulkan contoh CV untuk melatih model AI yang dipakai aplikasinya.</p>
+        <p lang="en">Final project at Bangkit. I collected sample CVs to train the AI model behind the app.</p>
+        <div class="links"><a href="https://github.com/talentease"><span lang="id">Lihat di GitHub</span><span lang="en">View on GitHub</span></a></div>
+        <div class="tags"><span>Machine learning</span></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="video">
+    <div class="sec-head">
+      <h2><span lang="id">video &amp; desain</span><span lang="en">video &amp; design</span></h2>
+      <p lang="id">Bukan pekerjaan utama saya, tapi cukup sering saya kerjakan untuk unit.</p>
+      <p lang="en">Not my main work, but something I do often for the unit.</p>
+    </div>
+    <div class="rows">
+      <div class="row"><div class="when">2026</div><div><b><span lang="id">Video PKKMB 2026 UPA TIK</span><span lang="en">UPA TIK video for new-student orientation (PKKMB) 2026</span></b><p lang="id">Menulis naskah, membuat subtitle, mengisi suara, dan mengedit.</p><p lang="en">Script, subtitles, voice-over, and editing.</p></div></div>
+      <div class="row"><div class="when"><span lang="id">Seri</span><span lang="en">Series</span></div><div><b>Smart Classroom</b><p lang="id">Seri 15 video tutorial, lengkap dengan gambar sampul dan deskripsinya di YouTube.</p><p lang="en">A 15-video tutorial series, with thumbnails and YouTube descriptions.</p></div></div>
+      <div class="row"><div class="when"><span lang="id">Lainnya</span><span lang="en">Other</span></div><div><b><span lang="id">Tutorial KIOSK, profil UPA TIK, infografis SOP</span><span lang="en">KIOSK tutorial, UPA TIK profile, SOP infographics</span></b><p lang="id">Video tutorial, video animasi profil unit, dan infografis alur kerja enam divisi.</p><p lang="en">A tutorial video, an animated profile of the unit, and workflow infographics for six divisions.</p></div></div>
+    </div>
+    <p class="after"><span lang="id">Channel YouTube yang saya kelola:</span><span lang="en">YouTube channels I run:</span> <a href="https://www.youtube.com/@tikunri">@tikunri</a> · <a href="https://www.youtube.com/@aljunaidtv">@aljunaidtv</a></p>
+  </section>
+
+  <section id="riwayat">
+    <div class="sec-head">
+      <h2><span lang="id">riwayat</span><span lang="en">history</span></h2>
+      <p lang="id">Pengalaman, pendidikan, dan sertifikasi.</p>
+      <p lang="en">Work, education, and certifications.</p>
+    </div>
+    <div class="rows">
+      <div class="row"><div class="when"><span lang="id">Jun 2025 – sekarang</span><span lang="en">Jun 2025 – now</span></div><div><b>UPA TIK Universitas Riau</b><p lang="id">Pengembangan dan pemeliharaan sistem informasi, serta produksi konten visual unit.</p><p lang="en">Building and maintaining information systems, plus visual content for the unit.</p></div></div>
+      <div class="row"><div class="when"><span lang="id">Sep 2023 – Okt 2024</span><span lang="en">Sep 2023 – Oct 2024</span></div><div><b><span lang="id">Koordinator Mahasiswa, Predatech</span><span lang="en">Student Coordinator, Predatech</span></b><p lang="id">Organisasi riset mahasiswa dengan 69 anggota. Pada periode ini berjalan Harvest of Insight (4 episode), Camprodatic (7 episode), Family Gathering, dan open recruitment 2024.</p><p lang="en">A 69-member student research organization. This term ran Harvest of Insight (4 episodes), Camprodatic (7 episodes), a family gathering, and the 2024 open recruitment.</p></div></div>
+      <div class="row"><div class="when"><span lang="id">Agu 2022 – Jul 2023</span><span lang="en">Aug 2022 – Jul 2023</span></div><div><b><span lang="id">Asisten Laboratorium Jaringan Komputer</span><span lang="en">Lab Assistant, Computer Networks Lab</span></b><p lang="id">Mendampingi praktikum, termasuk Pemrograman Fundamental, selama dua semester.</p><p lang="en">Assisted practical sessions, including Fundamental Programming, for two semesters.</p></div></div>
+      <div class="row"><div class="when">2023</div><div><b><span lang="id">Bangkit Academy, jalur Machine Learning</span><span lang="en">Bangkit Academy, Machine Learning path</span></b><p lang="id">Sertifikat Coursera dari DeepLearning.AI dan proyek akhir TalentEase.</p><p lang="en">Coursera certificates from DeepLearning.AI and the TalentEase final project.</p></div></div>
+      <div class="row"><div class="when">Nov 2023</div><div><b>TensorFlow Developer Certificate</b><p lang="id">Ujian praktik membuat model AI, dari Google.</p><p lang="en">A hands-on exam in building AI models, from Google.</p></div></div>
+      <div class="row"><div class="when"><span lang="id">Lulus Juli 2024</span><span lang="en">Graduated Jul 2024</span></div><div><b><span lang="id">S1 Teknik Informatika, UIN SUSKA Riau</span><span lang="en">BEng Informatics Engineering, UIN SUSKA Riau</span></b><p lang="id">IPK 3,81, cum laude. Lead GDSC.</p><p lang="en">GPA 3.81/4, cum laude. GDSC Lead.</p></div></div>
+      <div class="row"><div class="when"><span lang="id">Pelatihan</span><span lang="en">Training</span></div><div><b><span lang="id">Web, data, dan otomasi</span><span lang="en">Web, data, and automation</span></b><p>Digitalent Junior Web Developer · Associate Data Scientist · Golang · Power BI &amp; Tableau · n8n · Cisco Introduction to Data Science.</p></div></div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="kontak">
+  <div class="wrap">
+    <h2><span lang="id">kontak</span><span lang="en">contact</span></h2>
+    <p class="note" lang="id">Ada pertanyaan soal salah satu proyek? Kirim email saja.</p>
+    <p class="note" lang="en">Questions about any of these projects? Just send an email.</p>
+    <div class="contact">
+      <div><span>email</span><br><a href="mailto:amdfzn.micro@gmail.com">amdfzn.micro@gmail.com</a></div>
+      <div><span>linkedin</span><br><a href="https://www.linkedin.com/in/amdfzn/">linkedin.com/in/amdfzn</a></div>
+      <div><span>github</span><br><a href="https://github.com/amdfzn">github.com/amdfzn</a></div>
+    </div>
+    <div class="copy">
+      <span>© 2026 Ahmad Fauzan</span>
+      <span lang="id">Draf. Bagian bertanda [isi] belum dilengkapi.</span><span lang="en">Draft. Parts marked [isi] are not filled in yet.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

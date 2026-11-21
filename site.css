@@ -1,0 +1,36 @@
+/* Dipakai index.html dan eksplorasi.html: warna tema, huruf, aturan dwibahasa, tombol tema/bahasa.
+   Palet: colorhunt.co/palette/efece38fabd44a70a9000000. Turunan (kartu, garis, teks sekunder) sudah dicek kontrasnya. */
+:root {
+  --bg: #000000;
+  --surface: #121212;
+  --line: #3a3a3a;
+  --text: #efece3;
+  --muted: #a8a59d;
+  --accent: #8fabd4;        /* link dan aksen teks */
+  --blue: #4a70a9;          /* isi tombol, jangan untuk teks di atas hitam */
+  --accent-soft: rgba(74,112,169,.25);
+  --accent-line: rgba(143,171,212,.55);
+  --nav-bg: rgba(0,0,0,.88);
+  --mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  --sans: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  color-scheme: dark;
+}
+:root[data-theme="light"] {
+  --bg: #efece3;
+  --surface: #f8f6f0;
+  --line: #cdc8bb;
+  --text: #000000;
+  --muted: #57534b;
+  --accent: #3a5d90;        /* #4a70a9 digelapkan: kontras 5,65 di atas krem */
+  --accent-soft: rgba(74,112,169,.12);
+  --accent-line: rgba(74,112,169,.5);
+  --nav-bg: rgba(239,236,227,.9);
+  color-scheme: light;
+}
+
+html[lang="en"] body [lang="id"],
+html[lang="id"] body [lang="en"] { display: none !important; }
+
+.toggles { display: flex; gap: 6px; }
+.toggles button { font: 500 .8rem/1 var(--mono); color: var(--muted); background: none; border: 1px solid var(--line); border-radius: 4px; padding: 6px 9px; cursor: pointer; }
+.toggles button:hover { color: var(--text); border-color: var(--accent); }
