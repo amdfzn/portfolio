@@ -33,14 +33,6 @@ h3 { font-size: 1.05rem; color: var(--text); }
 p { margin: 0; }
 .ph { font-family: var(--mono); font-size: .85em; color: var(--accent); background: var(--accent-soft); border: 1px dashed var(--accent-line); border-radius: 4px; padding: 0 5px; white-space: nowrap; }
 
-/* nav */
-nav { position: sticky; top: 0; z-index: 5; background: var(--nav-bg); border-bottom: 1px solid var(--line); backdrop-filter: blur(6px); }
-nav .wrap { display: flex; gap: 20px; align-items: center; height: 52px; font-family: var(--mono); font-size: .85rem; }
-nav .brand { color: var(--accent); font-weight: 700; white-space: nowrap; }
-nav .menu { display: flex; gap: 20px; overflow-x: auto; white-space: nowrap; margin-left: auto; }
-nav .menu a { color: var(--muted); }
-nav .menu a:hover { color: var(--text); text-decoration: none; }
-
 /* hero */
 .hero { padding: 56px 0 48px; display: grid; grid-template-columns: 1.1fr 1fr; gap: 32px; align-items: start; }
 .hero h1 { font-size: clamp(1.9rem, 5vw, 2.8rem); }
@@ -103,11 +95,6 @@ footer .contact span { color: var(--muted); }
 @keyframes blink { 50% { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .caret { animation: none; } html { scroll-behavior: auto; } }
 @media (max-width: 760px) {
-  html { scroll-padding-top: 96px; }
-  nav .wrap { flex-wrap: wrap; height: auto; gap: 6px 12px; padding-top: 8px; padding-bottom: 8px; }
-  nav .toggles { margin-left: auto; }
-  nav .menu { order: 3; width: 100%; margin: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; overflow: visible; }
-  nav .menu a { padding: 6px 0; text-align: center; }
   .hero { grid-template-columns: 1fr; padding-top: 36px; }
   .cards { grid-template-columns: 1fr; }
   .stats { grid-template-columns: 1fr; }
@@ -118,10 +105,10 @@ footer .contact span { color: var(--muted); }
 </head>
 <body>
 
-<nav>
+<nav class="nav" aria-label="Menu">
   <div class="wrap">
     <a class="brand" href="#atas">~/fauzan</a>
-    <div class="menu">
+    <div class="menu" id="menu">
       <a href="#proyek"><span lang="id">proyek</span><span lang="en">projects</span></a>
       <a href="#riset"><span lang="id">riset</span><span lang="en">research</span></a>
       <a href="#video">video</a>
@@ -129,7 +116,7 @@ footer .contact span { color: var(--muted); }
       <a href="#riwayat"><span lang="id">riwayat</span><span lang="en">history</span></a>
       <a href="#kontak"><span lang="id">kontak</span><span lang="en">contact</span></a>
     </div>
-    <div class="toggles"><button id="bahasa" type="button">ID</button><button id="tema" type="button">☀</button></div>
+    <div class="toggles"><button id="bahasa" type="button">ID</button><button id="tema" type="button">☀</button><button class="burger" type="button" aria-label="Menu" aria-controls="menu" aria-expanded="false">☰</button></div>
   </div>
 </nav>
 

@@ -29,5 +29,13 @@
     theme.onclick = () => { set('tema', root.dataset.theme === 'light' ? 'dark' : 'light'); apply(); label(); };
     lang.onclick = () => { set('bahasa', root.lang === 'en' ? 'id' : 'en'); apply(); label(); };
     label();
+
+    // Menu ☰ di layar kecil: buka/tutup, dan tutup lagi setelah link dipilih.
+    const nav = document.querySelector('.nav'), burger = nav && nav.querySelector('.burger');
+    if (burger) {
+      const open = on => { nav.classList.toggle('open', on); burger.setAttribute('aria-expanded', on); };
+      burger.onclick = () => open(!nav.classList.contains('open'));
+      nav.querySelector('.menu').onclick = e => { if (e.target.closest('a')) open(false); };
+    }
   });
 })();

@@ -34,3 +34,21 @@ html[lang="id"] body [lang="en"] { display: none !important; }
 .toggles { display: flex; gap: 6px; }
 .toggles button { font: 500 .8rem/1 var(--mono); color: var(--muted); background: none; border: 1px solid var(--line); border-radius: 4px; padding: 6px 9px; cursor: pointer; }
 .toggles button:hover { color: var(--text); border-color: var(--accent); }
+
+/* Navigasi atas, sama di kedua halaman. Di layar kecil menu dilipat ke tombol ☰ (site.js). */
+.nav { position: sticky; top: 0; z-index: 5; background: var(--nav-bg); border-bottom: 1px solid var(--line); backdrop-filter: blur(6px); }
+.nav .wrap { display: flex; gap: 20px; align-items: center; min-height: 52px; padding: 0 20px; font-family: var(--mono); font-size: .85rem; }
+.nav .brand { color: var(--accent); font-weight: 700; white-space: nowrap; }
+.nav .menu { display: flex; gap: 20px; white-space: nowrap; margin-left: auto; }
+.nav .menu a { color: var(--muted); }
+.nav .menu a:hover, .nav .menu a[aria-current] { color: var(--text); text-decoration: none; }
+.nav .burger { display: none; }
+@media (max-width: 760px) {
+  .nav .wrap { flex-wrap: wrap; gap: 0 8px; }
+  .nav .brand { line-height: 52px; }
+  .nav .toggles { margin-left: auto; }
+  .nav .burger { display: block; }
+  .nav .menu { display: none; order: 3; width: 100%; flex-direction: column; gap: 0; margin: 0 0 6px; }
+  .nav.open .menu { display: flex; }
+  .nav .menu a { padding: 11px 0; border-top: 1px solid var(--line); }
+}
