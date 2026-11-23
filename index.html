@@ -103,9 +103,11 @@ footer .contact span { color: var(--muted); }
 @keyframes blink { 50% { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .caret { animation: none; } html { scroll-behavior: auto; } }
 @media (max-width: 760px) {
-  nav .wrap { gap: 12px; }
-  nav .brand { display: none; }
-  nav .menu { margin-left: 0; margin-right: auto; }
+  html { scroll-padding-top: 96px; }
+  nav .wrap { flex-wrap: wrap; height: auto; gap: 6px 12px; padding-top: 8px; padding-bottom: 8px; }
+  nav .toggles { margin-left: auto; }
+  nav .menu { order: 3; width: 100%; margin: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; overflow: visible; }
+  nav .menu a { padding: 6px 0; text-align: center; }
   .hero { grid-template-columns: 1fr; padding-top: 36px; }
   .cards { grid-template-columns: 1fr; }
   .stats { grid-template-columns: 1fr; }
